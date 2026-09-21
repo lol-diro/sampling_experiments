@@ -60,21 +60,8 @@ source("01_hcc_metadata_qc.R")
 ```r
 source("run_pipeline.R")
 ```
-This sources scripts `01` through `13` in order, unattended, stopping only if a script raises an error. If `nsclc_tracerx_2017.tar.gz` isn't in your data folder, it skips scripts 09-13 automatically. After it finishes, check `qc/01_qc_summary.txt` and confirm both legacy QC lines read `PASS` before trusting downstream results — script 01 reports a mismatch as a warning rather than aborting, so the pipeline does not stop on it.
+This sources scripts `01` through `24` in order.
 
-It then runs the Figure 5 extensions, if their inputs (§4) are present:
-- scripts `14`-`15` (driver mutations) and `19`-`21` (CNV/RNA) are fully independent of each other and each print what's missing and are skipped otherwise;
-- script `24` (Figure 5 itself) runs whenever `mmc4.xlsx` is available, regardless of whether the driver arm ran — with only CNV/RNA data, Figure 5 is generated with those panels only, and prints a note saying so.
-
-Every check still runs, in full, every time -- nothing about `DEBUG` skips or weakens a single `stop()`/`warning()`. That switch only controls what gets **written to disk**:
-- `DEBUG = FALSE` (default): `results/` contains only the tables that are literally read as plotting input by Script 13 (Figures 1-4/S1) or Script 24 (Figure 5) — verified by reading their own `fread()` calls, not guessed from folder names — the exhaustive-subset/patient-summary substrate tables for HCC and TRACERx100 (Scripts 04 and 11), the handful of tables other scripts genuinely re-read as real inputs (not just diagnostics), and the short `*_qc_summary.txt` narratives (enough to see every PASS/FAIL, and enough for `generate_validation_summary.R`). This is a lean run: roughly 25 files without Figure 5, ~35 with it.
-- `DEBUG = TRUE`: additionally writes every per-check diagnostic detail table and every sensitivity/robustness table that supports a sentence in the text but was never plotted as its own figure panel (e.g. the legacy 80%-threshold or mean-vs-median tables, or the many driver/CNV/RNA crosswalk and provenance tables). Roughly 200-260 files total. Nothing computed differs between the two settings — only what lands on disk.
-
-Finally, it writes one consolidated `results/VALIDATION_SUMMARY.txt`, collecting every PASS/FAIL line from every script's own summary into a single audit log. You can also regenerate it on its own, any time:
-```r
-source("generate_validation_summary.R")
-generate_validation_summary("/full/path/to/your_data_folder/output")
-```
 
 **8. Look at the results.** Everything lands under `<your_data_folder>/output/`:
 
