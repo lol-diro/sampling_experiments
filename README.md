@@ -1,13 +1,3 @@
-# Multiregion sampling analysis
-
-Reproduces manuscript **Figures 1-4 and Supplementary Figure 1** (the HCC
-all-filtered and protein-altering SNV/indel sampling-depth analysis,
-spatial designs, and TRACERx100 external validation), plus **Figure 5**
-(driver-mutation, CNV, and RNA-pathway sampling extensions) when its own
-input files are supplied. Figure 5's driver-mutation panel is itself
-optional within Figure 5: if `snv_indel.tsv` isn't available, Figure 5 is
-still generated with the CNV + RNA panels only (see §7-§8).
-
 ## Step-by-step Instructions
 
 **1. Download this repository.** Either:
@@ -33,7 +23,6 @@ still generated with the CNV + RNA panels only (see §7-§8).
 ```r
 install.packages(c("data.table", "readxl"))
 ```
-`readxl` is only used by the Figure 5 CNV/RNA scripts (19-21); the core pipeline (01-13) never loads it.
 
 **4. Get the input data.** You need one data folder containing all of these together:
 - `wgs_samples_matching.RData`
