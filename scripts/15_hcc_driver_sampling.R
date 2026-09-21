@@ -1,10 +1,6 @@
 # ==============================================================================
 # 15_hcc_driver_sampling.R
 #
-# Purpose
-#   Answer the collaborators' request about recovery of NON-UBIQUITOUS driver
-#   mutations as sampling depth increases, while preserving the validated
-#   estimand and inference.
 #
 # Primary driver-event rule (frozen here)
 #   1. Exact SNV/indel events in the supplied 48-driver + DICER1 gene list that
@@ -768,7 +764,6 @@ if (anyDuplicated(base_driver_reference$event_key) > 0L) {
   stop("Duplicate event_key in HIGH/MODERATE driver component.")
 }
 
-# Full collaborator-requested universe: 48 original genes + DICER1.
 driver49_reference <- rbindlist(
   list(
     base_driver_reference,
