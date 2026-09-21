@@ -1,7 +1,5 @@
 # ==============================================================================
 # Configuration: portable paths, filter thresholds, and frozen QC targets.
-# The exact-bootstrap helper is the canonical inference method;
-# `bootstrap_replicates` is a legacy fallback, retained but unused.
 # ==============================================================================
 
 options(stringsAsFactors = FALSE)
@@ -9,52 +7,28 @@ options(stringsAsFactors = FALSE)
 # ==============================================================================
 # USER CONFIGURATION -- edit the two values below for your machine.
 # ------------------------------------------------------------------------------
-# This is the ONLY section of this file collaborators should normally need to
-# touch to run the pipeline (see also the PARAMS block further below, which
-# documents which of its entries are safe/meaningful to change).
-#
+
+
 # INPUT_PATH
-#   Absolute path to the directory that directly contains:
-#     wgs_samples_matching.RData
-#     somatic_mutations.RData
-#     clinical_data.RData
-#     nsclc_tracerx_2017.tar.gz   (optional, only for scripts 09-12)
-#   Example:
-#     INPUT_PATH <- "/Users/alice/sampling_data"
-#   Leave as NULL to fall back to (in order): the INPUT_DIR
-#   environment variable, then the current working directory, then
-#   "<working directory>/data".
+#   Absolute path to the directory that directly contains the input data
 INPUT_PATH <- "/Users/ciro/Documents/R_Projects/data/planet_sampling/input_data"
 
 # OUTPUT_PATH
-#   Where results/intermediate/figures are written. Leave as NULL to
-#   default to <INPUT_PATH>/output (falls back to the
-#   OUTPUT_DIR environment variable if that is set instead).
-#   Example:
-#     OUTPUT_PATH <- "/Users/alice/sampling_data/output"
+#   Where results/intermediate/figures are written.
 OUTPUT_PATH <- "/Users/ciro/Documents/R_Projects/data/planet_sampling/output"
 
 # DEBUG
-#   Every internal consistency check (hypergeometric validation, regression
-#   against expected/legacy values, MD5 fingerprints, etc.) always runs and
-#   still aborts with stop() (or warns, for the one documented exception --
-#   see docs/PIPELINE_MAP.md) exactly as before; this switch only controls
-#   what gets WRITTEN to disk.
-#   FALSE (default): results/ contains only what is needed to reproduce
-#   Figures 1-4 and Supplementary Figure 1 -- the tables Script 13 actually
-#   reads, the handful of tables other scripts genuinely re-read as input,
-#   and the short *_qc_summary.txt / *_summary.txt narratives (enough to see
-#   every PASS/FAIL, and enough for generate_validation_summary.R). No
-#   sensitivity/robustness tables, no per-check diagnostic detail.
+#   FALSE (default): results/ contains only what is needed to reproduce the main 
+#   results and figures.
 #   TRUE: every table behind every check and every sensitivity/robustness
 #   analysis is also written, for debugging or a from-scratch
-#   re-verification. Nothing computed differs between the two -- only what
+#   re-verification. 
+
+#   Nothing computed differs between the two cases (TRUE or FALSE) only what
 #   is written to disk.
 DEBUG <- TRUE
 
 # FIGURE_FORMAT
-#   Which file format(s) Script 13 saves each manuscript figure in.
-#   One of "pdf", "png", or "both" (default).
 FIGURE_FORMAT <- "both"
 # ==============================================================================
 
