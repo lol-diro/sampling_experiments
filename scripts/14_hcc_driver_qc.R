@@ -2,8 +2,6 @@
 # 14_hcc_driver_qc.R
 #
 # Purpose
-#   QC-only preparation for the collaborator-requested non-ubiquitous driver
-#   mutation sampling analysis.
 #
 #   This script deliberately DOES NOT yet define the final driver-event universe
 #   or perform downsampling. It:
@@ -18,7 +16,6 @@
 # Required prerequisites
 #   - 00_config.R
 #   - Script 01 and Script 02 validated intermediates in the intermediate/ output directory
-#   - Driver_48genes_DICER1.csv supplied by collaborators
 #
 # Driver CSV location
 #   Preferred: set environment variable DRIVER_CSV_PATH to the full path.
