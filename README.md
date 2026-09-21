@@ -28,12 +28,10 @@ install.packages(c("data.table", "readxl"))
 - `wgs_samples_matching.RData`
 - `somatic_mutations.RData`
 - `clinical_data.RData`
-- `patient_level_summary.tsv` — the original/legacy pipeline's own output, required by script 04 as an independent regression check; without it, that script (and everything downstream of it) will stop
-- `nsclc_tracerx_2017.tar.gz` — only needed for the TRACERx100 arm and the manuscript figures (scripts 09-13); omit it to run just scripts 01-08
-
-Optional, for Figure 5 — each block below runs only if its own files are present:
-- `mmc4.xlsx` — needed for scripts 19, 20, 21 (focal CNV, broad CNV, RNA pathway) and for script 24 to generate Figure 5 at all
-- `Driver_48genes_DICER1.csv`, `snv_indel.tsv` (or `.zip`), `cnv_arm_level.tsv` — needed **together** for scripts 14-15 (driver mutations); without all three, Figure 5 is still generated (from `mmc4.xlsx` alone) but without the driver panel or the protein-altering comparator in the genomic panels
+- `patient_level_summary.tsv`
+- `nsclc_tracerx_2017.tar.gz`
+- `mmc4.xlsx`
+- `Driver_48genes_DICER1.csv`, `snv_indel.tsv` (or `.zip`), `cnv_arm_level.tsv`
 
 **5. Configure the pipeline.** Open `00_config.R` (in `scripts/`) and set:
 
@@ -41,10 +39,9 @@ Optional, for Figure 5 — each block below runs only if its own files are prese
 |---|---|---|
 | `INPUT_PATH` | the full path to your data folder from step 4 | **required** |
 | `OUTPUT_PATH` | a full path, or leave as `NULL` | optional; `NULL` writes outputs to `<data folder>/output` |
-| `DEBUG` | `FALSE` (default) or `TRUE` | optional; `FALSE` writes only what §7/§8 below list (enough to reproduce every figure); `TRUE` additionally writes every internal diagnostic/sensitivity table, for debugging — see §7 |
-| `FIGURE_FORMAT` | `"pdf"`, `"png"`, or `"both"` (default) | which file format(s) Scripts 13 and 24 save each figure in |
+| `DEBUG` | `FALSE` (default) or `TRUE` | optional; if `TRUE` the pipeline writes every internal diagnostic/sensitivity table, for debugging |
+| `FIGURE_FORMAT` | `"pdf"`, `"png"`, or `"both"` (default) | the file format(s) of the output figures |
 
-No other file needs editing to run the pipeline.
 
 **6. Run a script.** In R or RStudio, from the `scripts/` working directory:
 ```r
@@ -104,27 +101,3 @@ output/
 ```
 
 None of these are checked into the repository — they're regenerated every time you run the pipeline. There is no separate "paper package" folder: with the default `DEBUG = FALSE`, `results/` already *is* the paper package.
-
-**With `DEBUG = FALSE` (default), `results/` contains exactly:**
-- `qc/01_qc_summary.txt` … `qc/12_hcc_tracerx100_qc_summary.txt`, and (if their inputs are present) `qc/extensions/14_driver_qc_summary.txt`, `15_driver_sampling_summary.txt`, `19_focal_cnv_sampling_summary.txt`, `20_broad_cnv_sampling_mmc4_summary.txt`, `21_rna_pathway_sampling_summary.txt` — one short narrative per script, always kept
-- `qc/01_tumor_sample_map_audit.tsv` and `qc/02_reference_summary_by_patient.tsv` — **not** diagnostics-only: re-read by Scripts 15 and 12 respectively as real inputs, so always written regardless of `DEBUG`
-- `hcc_depth/04_hcc_exhaustive_subsets_all_filtered.tsv`, `04_hcc_unconstrained_patient_summary_all_filtered.tsv`
-- `hcc_depth/05_hcc_depth_core_summary_all_filtered.tsv`
-- `hcc_spatial/06_hcc_spatial_selected_subsets_primary_strict.tsv`, `06_hcc_spatial_selected_subsets_order_sensitivity.tsv` — re-read by Script 08
-- `hcc_spatial/07_hcc_spatial_main_effect_summary.tsv`, `07_hcc_spatial_absolute_design_summary_all_filtered.tsv`
-- `hcc_sensitivity/08_hcc_protein_altering_depth_summary.tsv`
-- `cross_cohort/12_hcc_tracerx100_fixed_n_ge5_curve_summary.tsv`, `12_hcc_tracerx100_fixed_n_ge5_paired_gains.tsv`, `12_hcc_tracerx100_reference_architecture_comparison.tsv`
-- `tracerx100/11_tracerx100_exhaustive_subsets_protein_altering.tsv`, `11_tracerx100_unconstrained_patient_summary_protein_altering.tsv`
-- `VALIDATION_SUMMARY.txt`
-- `figures/` — Figure1, Figure2, Figure3, Figure4, FigureS1 (in `FIGURE_FORMAT`), plus `13_figure_manifest.tsv`; Figure5 too if its inputs are present
-
-**Figure 5 only, additionally kept regardless of `DEBUG`** (if `mmc4.xlsx` is present):
-- `extensions/driver/14_driver_exact_event_candidates_preeligibility.tsv` — re-read by Script 15 (only if the driver arm ran)
-- `extensions/driver/15_driver_depth_summary_fixed_n_ge5.tsv`, `15_driver_paired_comparisons_fixed_n_ge5.tsv` (only if the driver arm ran)
-- `extensions/cnv/19_focal_cnv_depth_summary_fixed_n_ge5.tsv`, `19_focal_cnv_vs_protein_paired_fixed_n_ge5.tsv`
-- `extensions/cnv/20_broad_cnv_depth_summary_fixed_n_ge5.tsv`, `20_broad_cnv_vs_protein_paired_fixed_n_ge5.tsv`
-- `extensions/rna/21_rna_depth_summary_fixed_n_ge5.tsv`
-- `extensions/integration/24_genomic_detection_curves.tsv`, `24_genomic_classification_curves.tsv`, `24_genomic_k4_paired_vs_protein.tsv`, `24_rna_pathway_curves.tsv`, `24_multimodal_key_findings.tsv`, `24_multimodal_synthesis_provenance.tsv`, `24_multimodal_extension_summary.txt` — Script 24's own final tables, always kept as the Figure 5 deliverable
-- `figures/Figure5_multimodal_sampling_extensions.*` (in `FIGURE_FORMAT`)
-
-Set `DEBUG <- TRUE` in `00_config.R` to additionally get every diagnostic/sensitivity table behind these results (see `docs/PIPELINE_MAP.md` for the full script-by-script breakdown).
