@@ -1,7 +1,6 @@
 # ==============================================================================
 # 24_hcc_multimodal_extension_synthesis.R
 #
-# Final integration of collaborator-requested extension analyses.
 #
 # Integrates only validated/frozen modules:
 #   1) Protein-altering SNV/indel comparator
