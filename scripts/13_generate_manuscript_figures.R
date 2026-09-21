@@ -7,7 +7,7 @@
 #   raw genomic data in this script.
 #
 # Main figures
-#   Figure 1  Sampling-design schematic requested by collaborators
+#   Figure 1  schematic Sampling-design schematic 
 #             rows: grid-based dispersed / random-unconstrained example
 #             columns: k=3 / k=5, n=9 ordered sectors
 #
