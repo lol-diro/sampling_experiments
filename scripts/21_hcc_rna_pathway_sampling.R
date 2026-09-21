@@ -7,8 +7,7 @@
 #   tumour RNA-seq sector in Supplementary Table mmc4.xlsx.
 #
 # Why use the published GSVA scores rather than recompute from raw counts?
-#   The collaborator explicitly asked whether pathway/enrichment landscapes are
-#   preserved with fewer tumour regions. mmc4.xlsx already contains the exact
+#   mmc4.xlsx already contains the exact
 #   50 Hallmark GSVA scores used in the published study. Recomputing them would
 #   add version-, gene-set-, normalization-, and implementation-dependence
 #   without improving the answer to that question.
@@ -48,7 +47,6 @@
 # Important guardrails
 #   - Full available RNA-sector set is a reference, not whole-tumour truth.
 #   - No arbitrary "optimal k" threshold is imposed for RNA.
-#   - No ASTUTE/mixed model is needed to answer this collaborator question.
 #   - RNA and DNA have different available-sector cohorts; this script does not
 #     perform an invalid unpaired cross-modality hypothesis test.
 #
