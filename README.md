@@ -82,9 +82,9 @@ output/
 │   │   ├── rna/                 ← script 21
 │   │   └── integration/          ← script 24 (Fig. 5)
 │   └── VALIDATION_SUMMARY.txt
-├── intermediate/          ← .rds hand-off objects between scripts (not for reading)
+├── intermediate/          ← .rds hand-off objects between scripts
 ├── figures/               ← scripts 13, 24: Figures 1-5 + Suppl. Fig. 1, in FIGURE_FORMAT
 └── external/              ← script 09's extracted TRACERx100 archive (audit trail)
 ```
 
-None of these are checked into the repository — they're regenerated every time you run the pipeline. There is no separate "paper package" folder: with the default `DEBUG = FALSE`, `results/` already *is* the paper package.
+
