@@ -9,15 +9,6 @@
 #   4) Seven recurrent focal/cytoband CNV events from mmc4.xlsx
 #   5) Published 50-Hallmark GSVA RNA pathway landscape
 #
-# Explicitly NOT integrated as a sampling endpoint:
-#   Published quantitative transcriptomic_ITH from mmc4.xlsx.
-#   Scripts 22/23 showed that:
-#     - the Methods-literal mean pairwise (1-Spearman) metric is incompatible
-#       with the numerical range of the published transcriptomic_ITH values;
-#     - a Euclidean log2-DESeq2 implementation is extremely close but not exact;
-#     - no tested biologically explicit definition reproduced all 109 values.
-#   Therefore no undocumented retrospective formula is introduced.
-#
 # Outputs
 #   results/extensions/integration/
 #     24_genomic_detection_curves.tsv
