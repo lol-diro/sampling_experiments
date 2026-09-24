@@ -13,17 +13,16 @@
 #
 # The script:
 #   1. Reuses the validated event-presence/reference objects from Script 02.
-#   2. Reuses the validated sampling functions from Script 03.
-#   3. Enumerates all 4,590 HCC subsets exactly for the restricted event set.
-#   4. Repeats the key depth summaries:
+#   2. Enumerates all 4,590 HCC subsets exactly for the restricted event set.
+#   3. Repeats the key depth summaries:
 #        - available cohort, k=1..5
 #        - strict n>k, k=1..5
 #        - fixed n>=5, k=1..4
 #        - n>=6 exploratory, k=1..5
-#   5. Reuses the EXACT spatial selections frozen in Script 06 by joining their
+#   4. Reuses the EXACT spatial selections frozen in Script 06 by joining their
 #      canonical subset signatures to the protein-altering exhaustive universe.
-#   6. Repeats the key grid-vs-cluster spatial contrasts.
-#   7. Directly compares the sensitivity results with the all-filtered results
+#   5. Repeats the key grid-vs-cluster spatial contrasts.
+#   6. Directly compares the sensitivity results with the all-filtered results
 #      from Scripts 05 and 07.
 #
 # No variant re-calling, driver-only filtering, CNA/SV analysis, or additional
