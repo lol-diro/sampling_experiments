@@ -11,11 +11,11 @@ options(stringsAsFactors = FALSE)
 
 # INPUT_PATH
 #   Absolute path to the directory that directly contains the input data
-INPUT_PATH <- "/Users/ciro/Documents/R_Projects/data/planet_sampling/input_data"
+INPUT_PATH <- ""
 
 # OUTPUT_PATH
 #   Where results/intermediate/figures are written.
-OUTPUT_PATH <- "/Users/ciro/Documents/R_Projects/data/planet_sampling/output"
+OUTPUT_PATH <- ""
 
 # DEBUG
 #   FALSE (default): results/ contains only what is needed to reproduce the main 
