@@ -86,7 +86,6 @@ verify_inputs <- function(
     cat("\n(No tracerx_archive_path supplied: skipping the TRACERx100 archive check.)\n")
   }
 
-  cat("\n== Verifying legacy regression file (required by scripts 03, 04) ==\n")
   legacy_path <- file.path(data_dir, "patient_level_summary.tsv")
   if (file.exists(legacy_path)) {
     cat("  OK        patient_level_summary.tsv (present; no reference checksum available for this file)\n")
